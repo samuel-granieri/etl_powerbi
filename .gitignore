@@ -1,0 +1,25 @@
+# ambiente virtual
+env/
+venv/
+.venv/
+
+# variáveis de ambiente
+.env
+
+# cache python
+__pycache__/
+*.pyc
+
+# jupyter
+.ipynb_checkpoints/
+
+# spark
+.metastore_db/
+spark-warehouse/
+
+# logs
+*.log
+
+# sistema operacional
+.DS_Store
+Thumbs.db

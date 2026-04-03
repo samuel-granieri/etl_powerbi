@@ -1,0 +1,7 @@
+pandas
+pyyaml
+papermill
+notebook==7.2.2
+jupyterlab==4.2.5
+ipykernel
+pyspark==3.5.1

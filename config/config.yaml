@@ -1,0 +1,32 @@
+sqlserver:
+  host: ${SQLSERVER_HOST}
+  port: ${SQLSERVER_PORT}
+  database: ${SQLSERVER_DATABASE}
+  user: ${SQLSERVER_USER}
+  password: ${SQLSERVER_PASSWORD}
+  driver: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+
+storage:
+
+  bronze:
+    path: "data/bronze"
+    format: "delta"
+
+  silver:
+    path: "data/silver"
+    format: "delta"
+
+  gold:
+    path: "data/gold"
+    format: "delta"
+
+tables:
+
+  - name: ordem_compras
+    schema: dbo
+    load_type: full
+
+  - name: pedidos
+    schema: dbo
+    load_type: full
+    #incremental_column: data_venda

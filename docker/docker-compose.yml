@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+
+  spark:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+
+    container_name: pyspark_pipeline
+
+    env_file:
+      - ../.env        # ajuste o caminho se o .env estiver em outro lugar
+
+    volumes:
+      - ..:/app
+
+    working_dir: /app
+
+    ports:
+      - "4040:4040"
+
+    command: python3 run_pipeline.py
