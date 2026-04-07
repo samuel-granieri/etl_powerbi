@@ -2,20 +2,30 @@ import papermill as pm
 from pathlib import Path
 
 PIPELINE_ORDER = [
-    "notebooks/1.bronze/bronze_ordem_compras.ipynb"
+    "notebooks/1.bronze/compras_ordens_itens.ipynb",
+    "notebooks/1.bronze/compras_ordens.ipynb",
+    "notebooks/1.bronze/estoques.ipynb",
+    "notebooks/1.bronze/pedidos_itens.ipynb",
+    "notebooks/1.bronze/pedidos.ipynb",
+    "notebooks/1.bronze/pessoas.ipynb",
+    "notebooks/1.bronze/produtos_estoques_movimentacoes.ipynb",
+    "notebooks/1.bronze/produtos.ipynb",
+    "notebooks/1.bronze/rel_compras_ordens_referenciadas_saldos.ipynb"
 ]
+
+output_path = Path("notebooks/1.bronze/executed")
+output_path.mkdir(parents=True, exist_ok=True)
 
 for notebook in PIPELINE_ORDER:
 
-    output_notebook = notebook.replace(
-        ".ipynb",
-        "_executed.ipynb"
-    )
+    notebook_path = Path(notebook)
+
+    output_notebook = output_path / f"{notebook_path.stem}_executed.ipynb"
 
     print(f"executando {notebook}")
 
     pm.execute_notebook(
-        notebook,
+        notebook_path,
         output_notebook
     )
 

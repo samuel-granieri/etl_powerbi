@@ -7,7 +7,6 @@ sqlserver:
   driver: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
 
 storage:
-
   bronze:
     path: "data/bronze"
     format: "delta"
@@ -21,12 +20,74 @@ storage:
     format: "delta"
 
 tables:
-
-  - name: ordem_compras
+  - name: compras_ordens_itens
     schema: dbo
-    load_type: full
+    load_type: incremental
+    incremental_column: data_atualizado
+    incremental_strategy: merge
+    merge_keys: ["id"]
+    watermark: true
+
+  - name: rel_compras_ordens_referenciadas_saldos
+    schema: dbo
+    load_type: incremental
+    incremental_column: data_emissao
+    incremental_strategy: merge
+    merge_keys: ["id", "produto_id", ordem_compra_id", id_item]
+    watermark: true
+
+  - name: produtos
+    schema: dbo
+    load_type: incremental
+    incremental_column: data_atualizado
+    incremental_strategy: merge
+    merge_keys: ["id"]
+    watermark: true
+
+  - name: pessoas
+    schema: dbo
+    load_type: incremental
+    incremental_column: data_atualizado
+    incremental_strategy: merge
+    merge_keys: ["id"]
+    watermark: true
+
+  - name: compras_ordens
+    schema: dbo
+    load_type: incremental
+    incremental_column: data_atualizado
+    incremental_strategy: merge
+    merge_keys: ["id"]
+    watermark: true
+
+  - name: pedidos_itens
+    schema: dbo
+    load_type: incremental
+    incremental_column: data_atualizado
+    incremental_strategy: merge
+    merge_keys: ["id"]
+    watermark: true
+
+  - name: estoques
+    schema: dbo
+    load_type: incremental
+    incremental_column: data_atualizado
+    incremental_strategy: merge
+    merge_keys: ["id"]
+    watermark: true
 
   - name: pedidos
     schema: dbo
-    load_type: full
-    #incremental_column: data_venda
+    load_type: incremental
+    incremental_column: data_atualizado
+    incremental_strategy: merge
+    merge_keys: ["id"]
+    watermark: true
+    
+  - name: produtos_estoques_movimentacoes
+    schema: dbo
+    load_type: incremental
+    incremental_column: data_atualizado
+    incremental_strategy: merge
+    merge_keys: ["id", "empresa_id", "produto_id"]
+    watermark: true
