@@ -6,6 +6,11 @@ sqlserver:
   password: ${SQLSERVER_PASSWORD}
   driver: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
 
+services:
+  pyspark_pipeline:
+    volumes:
+      - ./spark-temp:/tmp/spark-temp
+
 storage:
   bronze:
     path: "data/bronze"
@@ -33,7 +38,7 @@ tables:
     load_type: incremental
     incremental_column: data_emissao
     incremental_strategy: merge
-    merge_keys: ["id", "produto_id", ordem_compra_id", id_item]
+    merge_keys: ["id", "produto_id", "ordem_compra_id", id_item]
     watermark: true
 
   - name: produtos

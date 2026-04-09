@@ -10,10 +10,12 @@ PIPELINE_ORDER = [
     "notebooks/1.bronze/pessoas.ipynb",
     "notebooks/1.bronze/produtos_estoques_movimentacoes.ipynb",
     "notebooks/1.bronze/produtos.ipynb",
-    "notebooks/1.bronze/rel_compras_ordens_referenciadas_saldos.ipynb"
+    "notebooks/1.bronze/rel_compras_ordens_referenciadas_saldos.ipynb",
+
+    "notebooks/2.silver/compras_ordens_itens.ipynb",
 ]
 
-output_path = Path("notebooks/1.bronze/executed")
+output_path = Path("notebooks/executed")
 output_path.mkdir(parents=True, exist_ok=True)
 
 for notebook in PIPELINE_ORDER:
