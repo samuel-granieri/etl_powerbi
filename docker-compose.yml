@@ -16,7 +16,7 @@ services:
       - "${SPARK_PORT}:4040"
     command: python3 pipeline_spark/run_pipeline.py
     restart: always
-    mem_limit: 2g
+    mem_limit: 512m
 
   api:
     build:
