@@ -26,4 +26,4 @@ Thumbs.db
 
 
 #saida sql
-data/
+pipeline_spark/data/

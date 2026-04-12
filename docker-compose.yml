@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+
+  spark:
+    build:
+      context: .
+      dockerfile: pipeline_spark/Dockerfile
+    container_name: pyspark_pipeline
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "${SPARK_PORT}:4040"
+    command: python3 pipeline_spark/run_pipeline.py
+    restart: always
+    mem_limit: 2g
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: gold_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./pipeline_spark/data/gold:/data/gold
+    depends_on:
+      - spark
+    restart: always
+    healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+    mem_limit: 512m
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+    mem_limit: 256m
