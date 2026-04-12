@@ -26,5 +26,8 @@ def create_spark_session(app_name: str) -> SparkSession:
         # evita alguns locks
         .config("spark.cleaner.referenceTracking.cleanCheckpoints", "true")
 
+        # auto merge schema
+        .config("spark.databricks.delta.schema.autoMerge.enabled", "true")
+
         .getOrCreate()
     )

@@ -38,7 +38,7 @@ tables:
     load_type: incremental
     incremental_column: data_emissao
     incremental_strategy: merge
-    merge_keys: ["id", "produto_id", "ordem_compra_id", id_item]
+    merge_keys: ["id", "produto_id", "ordem_compra_id", "id_item", "empresa_id"]
     watermark: true
 
   - name: produtos
@@ -94,5 +94,5 @@ tables:
     load_type: incremental
     incremental_column: data_atualizado
     incremental_strategy: merge
-    merge_keys: ["id", "empresa_id", "produto_id"]
+    merge_keys: ["id"]
     watermark: true

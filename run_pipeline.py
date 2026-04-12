@@ -13,6 +13,17 @@ PIPELINE_ORDER = [
     "notebooks/1.bronze/rel_compras_ordens_referenciadas_saldos.ipynb",
 
     "notebooks/2.silver/compras_ordens_itens.ipynb",
+    "notebooks/2.silver/compras_ordens.ipynb",
+    "notebooks/2.silver/estoques.ipynb",
+    "notebooks/2.silver/pedidos_itens.ipynb",
+    "notebooks/2.silver/pedidos.ipynb",
+    "notebooks/2.silver/pessoas.ipynb",
+    "notebooks/2.silver/produtos_estoques_movimentacoes.ipynb",
+    "notebooks/2.silver/produtos.ipynb",
+    "notebooks/2.silver/rel_compras_ordens_referenciadas_saldos.ipynb",
+
+    "notebooks/3.gold/saldos_oc.ipynb",
+    "notebooks/3.gold/pedidos_ordem_compras.ipynb"
 ]
 
 output_path = Path("notebooks/executed")
